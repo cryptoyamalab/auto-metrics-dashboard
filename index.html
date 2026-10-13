@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Auto Metrics Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Auto Metrics Dashboard</h1>
+      <p>Control de odómetro, rendimiento MPG y costo por milla</p>
+    </header>
+
+    <!-- Resumen / KPIs -->
+    <section class="kpi-grid">
+      <div class="card">
+        <h3>Último Odómetro</h3>
+        <p id="kpi-odo">0 mi</p>
+      </div>
+      <div class="card">
+        <h3>MPG Promedio</h3>
+        <p id="kpi-avg-mpg">0.00</p>
+      </div>
+      <div class="card">
+        <h3>Último MPG</h3>
+        <p id="kpi-last-mpg">0.00</p>
+      </div>
+      <div class="card">
+        <h3>Costo Promedio / Milla</h3>
+        <p id="kpi-cpm">$0.00</p>
+      </div>
+    </section>
+
+    <!-- Formulario de Registro -->
+    <section class="form-section card">
+      <h2>Registrar Recarga</h2>
+      <form id="fuel-form">
+        <div class="form-group">
+          <label for="fecha">Fecha</label>
+          <input type="date" id="fecha" required />
+        </div>
+        <div class="form-group">
+          <label for="odometro">Odómetro Actual (Millas)</label>
+          <input type="number" id="odometro" step="0.1" placeholder="Ej. 125020" required />
+        </div>
+        <div class="form-group">
+          <label for="galones">Galones Cargados</label>
+          <input type="number" id="galones" step="0.001" placeholder="Ej. 18.2" required />
+        </div>
+        <div class="form-group">
+          <label for="costo">Costo Total ($)</label>
+          <input type="number" id="costo" step="0.01" placeholder="Ej. 62.50" required />
+        </div>
+        <button type="submit" class="btn">Guardar Recarga</button>
+      </form>
+    </section>
+
+    <!-- Gráfico -->
+    <section class="card chart-card">
+      <h2>Historial de Eficiencia (MPG)</h2>
+      <canvas id="mpgChart"></canvas>
+    </section>
+
+    <!-- Tabla Historial -->
+    <section class="card table-card">
+      <div class="table-header">
+        <h2>Historial de Registros</h2>
+        <button id="clear-btn" class="btn btn-secondary">Borrar Datos</button>
+      </div>
+      <div class="table-responsive">
+        <table>
+          <thead>
+            <tr>
+              <th>Fecha</th>
+              <th>Odómetro</th>
+              <th>Millas Recorridas</th>
+              <th>Galones</th>
+              <th>MPG</th>
+              <th>Costo Total</th>
+              <th>$/Milla</th>
+              <th>Acción</th>
+            </tr>
+          </thead>
+          <tbody id="logs-tbody">
+            <!-- Se llena con JS -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
